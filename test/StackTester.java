@@ -10,7 +10,7 @@ import org.junit.Test;
  */
 
 /**
- * @author Bruce
+ *
  *
  */
 public class StackTester {
@@ -24,29 +24,43 @@ public class StackTester {
 	@Before
 	public void setUp() throws Exception {
 		s = new Stack();
-		ety = new Entry(5.5f);
+		ety = new Entry(12.34f);
 	}
 
-	@Test
+	@Test	//test push(), pop() and size().
 	public void pushthenpopsize() throws EmptyStackException {
+		boolean thrown;	//define flag.
+		
 		s.push(ety);
-		assertEquals("Test 1 : push then pop", ety, s.pop());
-		assertEquals("Test 2 : pop then size", 0, s.size());
-		try {
-			s.pop();
-			fail("Test 3 : Empty Stack Exception in pop()");
-		} catch (EmptyStackException e) {}
+		assertEquals("Test 1 : push then pop", ety, s.pop());	//should match here.
+		assertEquals("Test 2 : pop then size", 0, s.size());	//stack should be empty, force refactoring of update size.
+		
+		thrown = false;	//initial flag
+		try {	//test functionality of throw exception, force refactoring of throw exception.
+			s.pop();	//should throw exception here.
+		} catch (EmptyStackException e) {
+			thrown = true;	//if catch exception then change flag.
+		}
+		assertTrue("Test 3 : Empty Stack Exception in pop()", thrown);	//if pop() failed to throw exception, this failure message will show.
+
 	}
 
-	@Test
+	@Test	//test push(), top() and size().
 	public void pushthentopsize() throws EmptyStackException {
+		boolean thrown;	//define flag.
+
 		s.push(ety);
-		assertEquals("Test 4 : push then top", ety, s.top());
-		assertEquals("Test 5 : top then size", 1, s.size());
-		try {
+		assertEquals("Test 4 : push then top", ety, s.top());	//should match here.
+		assertEquals("Test 5 : top then size", 1, s.size());	//stack should be not empty, force refactoring of update size.
+
+		thrown = false;	//initial flag
+		try {	//test functionality of throw exception, force refactoring of throw exception.
 			s.pop();
-			s.top();
-			fail("Test 6 : Empty Stack Exception in top()");
-		} catch (EmptyStackException e) {}
+			s.top();	//should throw exception here.
+		} catch (EmptyStackException e) {
+			thrown = true;	//if catch exception then change flag.
+		}
+		assertTrue("Test 6 : Empty Stack Exception in top()", thrown);	//if top() failed to throw exception, this failure message will show.
+
 	}
 }

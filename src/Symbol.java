@@ -2,10 +2,6 @@
  * 
  */
 
-/**
- * @author Bruce
- *
- */
 public enum Symbol {
 	LEFT_BRACKET,
 	RIGHT_BRACKET,

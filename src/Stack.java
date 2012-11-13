@@ -6,10 +6,6 @@ import java.util.List;
  * 
  */
 
-/**
- * @author Bruce
- *
- */
 public class Stack {
 
 	private int size;
@@ -21,7 +17,7 @@ public class Stack {
 	public void push(Entry ety) {
 		// TODO Auto-generated method stub
 		this.entries.add(ety);
-		this.size = this.entries.size();
+		this.size = this.entries.size();	//refactor: update size
 	}
 
 	public Entry pop() throws EmptyStackException {
@@ -29,11 +25,11 @@ public class Stack {
 		if (this.size > 0) {
 			Entry e = this.entries.get(this.size-1);
 			this.entries.remove(this.size-1);
-			this.size = this.entries.size();
+			this.size = this.entries.size();	//refactor: update size
 			return e;
 		}
 		else {
-			throw new EmptyStackException();
+			throw new EmptyStackException();	//refactor: throw exception
 		}
 	}
 	public int size() {
@@ -44,11 +40,11 @@ public class Stack {
 		// TODO Auto-generated method stub
 		if (this.size > 0) {
 			Entry e = this.entries.get(this.size-1);
-			this.size = this.entries.size();
+			this.size = this.entries.size();	//refactor: update size
 			return e;
 		}
 		else {
-			throw new EmptyStackException();
+			throw new EmptyStackException();	//refactor: throw exception
 		}
 	}
 	
