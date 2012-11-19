@@ -10,15 +10,15 @@ import java.util.EmptyStackException;
  */
 public class OpStack {
 
-	private Stack numStack;
+	private Stack opStack;
 
 	public OpStack() {
-		numStack = new Stack();
+		opStack = new Stack();
 	}
 	
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		if (numStack.size() == 0)
+		if (opStack.size() == 0)
 			return true;
 		return false;
 	}
@@ -27,18 +27,31 @@ public class OpStack {
 		// TODO Auto-generated method stub
 		Entry ety = new Entry(i);
 		
-		numStack.push(ety);
+		opStack.push(ety);
 	}
 
 	public Symbol pop() throws EmptyStackException {
 		// TODO Auto-generated method stub
 		Entry ety;
 		
-		ety = numStack.pop();
+		ety = opStack.pop();
 		try {
 			return ety.getSymbol();
 		} catch (BadTypeException e) {
 			System.err.println("BadTypeException in OpStack::pop()");
+		}
+		return Symbol.INVALID;
+	}
+
+	public Symbol top() throws EmptyStackException {
+		// TODO Auto-generated method stub
+		Entry ety;
+		
+		ety = opStack.top();
+		try {
+			return ety.getSymbol();
+		} catch (BadTypeException e) {
+			System.err.println("BadTypeException in OpStack::top()");
 		}
 		return Symbol.INVALID;
 	}
