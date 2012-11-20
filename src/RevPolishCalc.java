@@ -16,6 +16,7 @@ public class RevPolishCalc implements Calculator{
 		values = new NumStack();
 	}
 	
+	@SuppressWarnings("resource")
 	@Override
 	public float evaluate(String what) throws InvalidExpressionException {
 		// TODO Auto-generated method stub
@@ -43,7 +44,6 @@ public class RevPolishCalc implements Calculator{
 				values.push(arg);
 			}
 		}
-		s.close();
 		return values.pop();
 	}
 

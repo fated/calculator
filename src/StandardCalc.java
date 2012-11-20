@@ -12,14 +12,13 @@ public class StandardCalc implements Calculator{
 
 	private OpStack values;
 	private RevPolishCalc rpCalc;
-	private StrStack strStack;
 
 	public StandardCalc() {
 		values = new OpStack();
 		rpCalc = new RevPolishCalc();
-		strStack = new StrStack();
 	}
 	
+	@SuppressWarnings("resource")
 	@Override
 	public float evaluate(String what) throws InvalidExpressionException {
 		// TODO Auto-generated method stub
@@ -28,36 +27,14 @@ public class StandardCalc implements Calculator{
 
 		while (s.hasNext()) {
 			String str = s.next();
-			if (str.equals("+")) {
-				if (values.isEmpty() || values.top() == Symbol.LEFT_BRACKET)
-					values.push(Symbol.PLUS);
-				else {
+			if (isOperator(str)) {
+				while (!values.isEmpty() && getPrecedence(str) <= getPrecedence(symbolToString(values.top())))
 					rpStr = rpStr + symbolToString(values.pop()) + " ";
-					values.push(Symbol.PLUS);
-				}
-			} else if (str.equals("-")) {
-				if (values.isEmpty() || values.top() == Symbol.LEFT_BRACKET)
-					values.push(Symbol.MINUS);
-				else {
-					rpStr = rpStr + symbolToString(values.pop()) + " ";
-					values.push(Symbol.MINUS);
-				}				
-			} else if (str.equals("*")) {
-				if (values.top() == Symbol.TIMES || values.top() == Symbol.DIVIDE) {
-					rpStr = rpStr + symbolToString(values.pop()) + " ";
-					values.push(Symbol.TIMES);
-				} else 
-					values.push(Symbol.TIMES);
-			} else if (str.equals("/")) {
-				if (values.top() == Symbol.TIMES || values.top() == Symbol.DIVIDE) {
-					rpStr = rpStr + symbolToString(values.pop()) + " ";
-					values.push(Symbol.DIVIDE);
-				} else 
-					values.push(Symbol.DIVIDE);
+				values.push(stringToSymbol(str));
 			} else if (str.equals("(")) {
 				values.push(Symbol.LEFT_BRACKET);
 			} else if (str.equals(")")) {
-				while (values.top() != Symbol.LEFT_BRACKET)
+				while (!values.isEmpty() && values.top() != Symbol.LEFT_BRACKET)
 					rpStr = rpStr + symbolToString(values.pop()) + " ";
 				values.pop();
 			} else {
@@ -66,10 +43,8 @@ public class StandardCalc implements Calculator{
 		}
 		
 		while (!values.isEmpty())
-			strStack.push(symbolToString(values.pop()));
-		while (!strStack.isEmpty())
-			rpStr = rpStr + strStack.pop() + " ";
-
+			rpStr = rpStr + symbolToString(values.pop()) + " ";
+			
 		return rpCalc.evaluate(rpStr);
 	}
 
@@ -85,5 +60,33 @@ public class StandardCalc implements Calculator{
 			return "/";
 		return "";
 	}
+	
+	private Symbol stringToSymbol(String str) {
+		// TODO Auto-generated method stub
+		if (str.equals("+"))
+			return Symbol.PLUS;
+		else if (str.equals("-"))
+			return Symbol.MINUS;
+		else if (str.equals("*"))
+			return Symbol.TIMES;
+		else if (str.equals("/"))
+			return Symbol.DIVIDE;
+		return Symbol.INVALID;
+	}
+	
+	private int getPrecedence(String str) {
+		if (str.equals("+") || str.equals("-"))
+			return 1;
+		else if (str.equals("*") || str.equals("/"))
+			return 2;
+		return 0;
+	}
 
+	private boolean isOperator(String str) {
+		boolean flag = false;
+		
+		if (str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/"))
+			flag = true;
+		return flag;
+	}
 }

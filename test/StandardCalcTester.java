@@ -24,7 +24,7 @@ public class StandardCalcTester {
 	public void setUp() throws Exception {
 		sc = new StandardCalc();
 		str1 = "( 5 * ( 6 + 7 ) ) - 2";
-		str2 = "1 a d f a ";
+		str2 = "1 (( + ";
 	}
 
 	@Test
