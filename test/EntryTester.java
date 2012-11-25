@@ -8,7 +8,8 @@ import org.junit.Test;
  */
 
 /**
- * 
+ * A unit tester for Entry
+ * @author Bruce
  *
  */
 public class EntryTester {
