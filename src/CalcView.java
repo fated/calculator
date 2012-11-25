@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,14 +19,13 @@ import javax.swing.JTextField;
  */
 
 /**
+ * A controller of Calculator in MVC framework.
  * @author Bruce
- *
+ * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
+ * > Model¨Cview¨Ccontroller from Wikipedia</a>
  */
 public class CalcView extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String expression;
 	private String answer;
@@ -36,31 +36,43 @@ public class CalcView extends JFrame{
     private JRadioButton infixButton;
     private ButtonGroup bg;
     
+	/**
+	 * A constructor of class CalcController, adds components to the panel and<br>
+	 * paint.
+	 */
 	public CalcView() {
+		//set text fields
 		inputTF = new JTextField(15);
 		resultTF = new JTextField(15);
+		resultTF.setBackground(Color.GRAY);
+		resultTF.setForeground(Color.BLACK);
 		resultTF.setEditable(false);
 
+		//set button, radio buttons and button group
 		calcButton = new JButton("Calculate");
 		bg = new ButtonGroup();
 		revButton = new JRadioButton("Reverse Polish");
-		revButton.setActionCommand("rev");
+		revButton.setActionCommand("postfix");
 		infixButton = new JRadioButton("Infix", true);
 		infixButton.setActionCommand("infix");
 		bg.add(revButton);
 		bg.add(infixButton);
 		
+		//set main panel and main layout
 		JPanel content = new JPanel();
 		content.setSize(300, 200);
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 		content.add(Box.createRigidArea(new Dimension(100,5)));
 
+		//add calcButton
         calcButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		content.add(calcButton);
 		
+		//set center panel and layout
 		JPanel center = new JPanel();
 		center.setLayout(new FlowLayout());
 
+		//add labels and text fields
 		JPanel label = new JPanel();
 		label.setLayout(new BoxLayout(label, BoxLayout.Y_AXIS));
 		label.add(new JLabel("Expression"));
@@ -73,8 +85,10 @@ public class CalcView extends JFrame{
 		tf.add(resultTF);
 		center.add(tf);
 
+		//add center to content
 		content.add(center);
 		
+		//add radio buttons
 		JPanel radio = new JPanel();
 		radio.setLayout(new FlowLayout());
 		radio.add(revButton);
@@ -87,22 +101,50 @@ public class CalcView extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * A method that gets the expression from text field.
+	 * @return the string form of the expression.
+	 */
 	public String getExpression() {
 		expression = inputTF.getText();
 		return expression;
 	}
 	
+	/**
+	 * A method that sets the value to text field.
+	 * @param str the string form of the calculated value.
+	 */
 	public void setAnswer(String str) {
 		answer = str;
 		resultTF.setText(answer);
+		resultTF.setBackground(Color.GRAY);		//change color
+		resultTF.setForeground(Color.BLACK);
 	}
 	
+	/**
+	 * A method that sets the error message to text field.
+	 * @param err the string form of the error message.
+	 */
+	public void setErrorMessage(String err) {
+		resultTF.setText(err);
+		resultTF.setBackground(Color.RED);		//change color
+		resultTF.setForeground(Color.WHITE);
+	}
+	
+	/**
+	 * A method that adds a listener to the button.
+	 * @param bl button listener.
+	 */
 	public void addButtonListener(ActionListener bl) {
 		calcButton.addActionListener(bl);
 	}
 	
-	public void addRadioListener(ActionListener rl1, ActionListener rl2) {
-		revButton.addActionListener(rl1);
-		infixButton.addActionListener(rl2);
+	/**
+	 * A method that adds a listener to the radio button.
+	 * @param rl radio listener.
+	 */
+	public void addRadioListener(ActionListener rl) {
+		revButton.addActionListener(rl);
+		infixButton.addActionListener(rl);
 	}
 }

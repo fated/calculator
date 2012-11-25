@@ -3,14 +3,12 @@
  */
 
 /**
+ * Signals that the expression is not valid during input.
  * @author Bruce
  *
  */
-class InvalidExpressionException extends Exception {
+public class InvalidExpressionException extends Exception {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public InvalidExpressionException(String message) {

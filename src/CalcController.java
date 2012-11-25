@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
  */
 
 /**
+ * A controller of Calculator in MVC framework.
  * @author Bruce
- *
+ * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
+ * > Model¨Cview¨Ccontroller from Wikipedia</a>
  */
 public class CalcController {
 
@@ -15,52 +17,70 @@ public class CalcController {
 	private static CalcModel model;
 	private static boolean isInfix = true;
 	
-	public CalcController() {
-		view = new CalcView();
-		model = new CalcModel();
-		view.setVisible(true);
-	}
 	/**
-	 * @param args
+	 * A constructor of class CalcController, initializes all the fields and add<br>
+	 * action listeners to the view.
 	 */
+	public CalcController() {
+		view = new CalcView();		//initialize
+		model = new CalcModel();
+		view.addButtonListener(new ButtonListener());	//add listeners
+        view.addRadioListener(new RadioListener());
+		view.setVisible(true);		//display
+	}
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		@SuppressWarnings("unused")
 		CalcController controller = new CalcController();
-		
-		class ButtonListener implements ActionListener {
+	}
+	
+	/**
+	 * A private button listener class implements action listener interface.
+	 * @author Bruce
+	 *
+	 */
+	private class ButtonListener implements ActionListener {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String expr = view.getExpression();
-				String result = "";
-				
-				try {
-					result = Float.toString(model.evaluate(expr, isInfix));
-				} catch (InvalidExpressionException e1) {
-					// TODO Auto-generated catch block
-				}
-				view.setAnswer(result);
-				view.setVisible(true);
-			}
+		/**
+		 * Invoked when an button is pressed.
+		 * @param e action event.
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String expr = view.getExpression();
+			String result = "";
 			
-		}
-		
-		class RadioListener implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getActionCommand().equals("rev"))
-					isInfix = false;
-				if (e.getActionCommand().equals("infix"))
-					isInfix = true;
+			try {
+				result = Float.toString(model.evaluate(expr, isInfix));
+				view.setAnswer(result);
+			} catch (InvalidExpressionException e1) {
+				view.setErrorMessage(e1.getMessage());	//output error message
 			}
 		}
 		
-		view.addButtonListener(new ButtonListener());
-        view.addRadioListener(new RadioListener(), new RadioListener());
+	}
+	
+	/**
+	 * A private radio button listener class implements action listener interface.
+	 * @author Bruce
+	 *
+	 */
+	private class RadioListener implements ActionListener {
+
+		/**
+		 * Invoked when one of the radio buttons is selected.
+		 * @param e action event.
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand().equals("postfix"))
+				isInfix = false;
+			if (e.getActionCommand().equals("infix"))
+				isInfix = true;
+		}
+		
 	}
 	
 }
