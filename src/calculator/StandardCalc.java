@@ -46,10 +46,18 @@ public class StandardCalc implements Calculator {
 			throws InvalidExpressionException {
 		Scanner s = new Scanner(what);
 		String rpStr = "";
+		boolean expectNumber = true;
 
 		while (s.hasNext()) {
 			String str = s.next();
 			if (isOperator(str)) {
+				if (expectNumber) {
+					s.close();
+					throw new InvalidExpressionException(
+							"Invalid Expression!");
+				} else {
+					expectNumber = true;
+				}
 				try {
 					while (!opStack.isEmpty() && getPrecedence(str) 
 							<= getPrecedence(symbolToString(opStack.top()))) {
@@ -73,6 +81,13 @@ public class StandardCalc implements Calculator {
 							"Unbalanced Parentheses!");
 				}
 			} else {
+				if (!expectNumber) {
+					s.close();
+					throw new InvalidExpressionException(
+							"Invalid Expression!");
+				} else {
+					expectNumber = false;
+				}
 				rpStr = rpStr + str + " ";
 			}
 		}
