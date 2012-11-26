@@ -31,12 +31,14 @@ public class StandardCalcTester {
 	}
 
 	/**
-	 * Test method for {@link calculator.StandardCalc#evaluate(java.lang.String)}.
-	 * @throws InvalidExpressionException
+	 * Test method for 
+	 * {@link calculator.StandardCalc#evaluate(java.lang.String)}.
+	 * @throws InvalidExpressionException when expression is invalid.
 	 */
 	@Test
 	public void testEvaluate() throws InvalidExpressionException {
-		assertEquals("Test 1 : test evaluate() in StandardCalc", 63.0f, sc.evaluate(str1), 0.000001);
+		assertEquals("Test 1 : test evaluate() in StandardCalc", 
+				63.0f, sc.evaluate(str1), 0.000001);
 		
 		boolean thrown = false;
 		try {
@@ -44,7 +46,8 @@ public class StandardCalcTester {
 		} catch (InvalidExpressionException e) {
 			thrown = true;
 		}
-		assertTrue("Test 2 : test InvalidExpressionException in evaluate()", thrown);
+		assertTrue("Test 2 : test InvalidExpressionException in evaluate()", 
+				thrown);
 	}
 
 }

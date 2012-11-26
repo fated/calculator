@@ -22,10 +22,10 @@ import javax.swing.JTextField;
 /**
  * A controller of Calculator in MVC framework.
  * @author Bruce
- * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
- * > Model每view每controller from Wikipedia</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93contro
+ * ller"> Model每view每controller from Wikipedia</a>
  */
-public class CalcView extends JFrame{
+public class CalcView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private String expression;
@@ -38,8 +38,8 @@ public class CalcView extends JFrame{
     private ButtonGroup bg;
     
 	/**
-	 * A constructor of class CalcController, adds components to the panel and<br>
-	 * paint.
+	 * A constructor of class CalcController, adds components to the panel 
+	 * and paint.
 	 */
 	public CalcView() {
 		//set text fields
@@ -106,7 +106,7 @@ public class CalcView extends JFrame{
 	 * A method that gets the expression from text field.
 	 * @return the string form of the expression.
 	 */
-	public String getExpression() {
+	public final String getExpression() {
 		expression = inputTF.getText();
 		return expression;
 	}
@@ -115,7 +115,7 @@ public class CalcView extends JFrame{
 	 * A method that sets the value to text field.
 	 * @param str the string form of the calculated value.
 	 */
-	public void setAnswer(String str) {
+	public final void setAnswer(final String str) {
 		answer = str;
 		resultTF.setText(answer);
 		resultTF.setBackground(Color.GRAY);		//change color
@@ -126,7 +126,7 @@ public class CalcView extends JFrame{
 	 * A method that sets the error message to text field.
 	 * @param err the string form of the error message.
 	 */
-	public void setErrorMessage(String err) {
+	public final void setErrorMessage(final String err) {
 		resultTF.setText(err);
 		resultTF.setBackground(Color.RED);		//change color
 		resultTF.setForeground(Color.WHITE);
@@ -136,7 +136,7 @@ public class CalcView extends JFrame{
 	 * A method that adds a listener to the button.
 	 * @param bl button listener.
 	 */
-	public void addButtonListener(ActionListener bl) {
+	public final void addButtonListener(final ActionListener bl) {
 		calcButton.addActionListener(bl);
 	}
 	
@@ -144,7 +144,7 @@ public class CalcView extends JFrame{
 	 * A method that adds a listener to the radio button.
 	 * @param rl radio listener.
 	 */
-	public void addRadioListener(ActionListener rl) {
+	public final void addRadioListener(final ActionListener rl) {
 		revButton.addActionListener(rl);
 		infixButton.addActionListener(rl);
 	}

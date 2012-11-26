@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * A unit tester for RevPolishCalc
+ * A unit tester for RevPolishCalc.
  * @author Bruce
  *
  */
@@ -31,12 +31,14 @@ public class RevPolishCalcTester {
 	}
 
 	/**
-	 * Test method for {@link calculator.RevPolishCalc#evaluate(java.lang.String)}.
-	 * @throws InvalidExpressionException
+	 * Test method for 
+	 * {@link calculator.RevPolishCalc#evaluate(java.lang.String)}.
+	 * @throws InvalidExpressionException when expression is invalid.
 	 */
 	@Test
 	public void testEvaluate() throws InvalidExpressionException {
-		assertEquals("Test 1 : test evaluate() in RevPolishCalc", 63.0f, rpc.evaluate(str1), 0.000001);
+		assertEquals("Test 1 : test evaluate() in RevPolishCalc", 
+				63.0f, rpc.evaluate(str1), 0.000001);
 		
 		boolean thrown = false;
 		try {
@@ -44,7 +46,8 @@ public class RevPolishCalcTester {
 		} catch (InvalidExpressionException e) {
 			thrown = true;
 		}
-		assertTrue("Test 2 : test InvalidExpressionException in evaluate()", thrown);
+		assertTrue("Test 2 : test InvalidExpressionException in evaluate()", 
+				thrown);
 	}
 
 }

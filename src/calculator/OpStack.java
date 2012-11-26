@@ -1,5 +1,4 @@
 package calculator;
-import java.util.EmptyStackException;
 
 /**
  * 
@@ -27,9 +26,10 @@ public class OpStack {
 	 * A method to see if the stack is empty or not.
 	 * @return true if the size of stack is 0, otherwise false.
 	 */
-	public boolean isEmpty() {
-		if (opStack.size() == 0)
+	public final boolean isEmpty() {
+		if (opStack.size() == 0) {
 			return true;
+		}
 		return false;
 	}
 
@@ -37,7 +37,7 @@ public class OpStack {
 	 * A method to push an operator into the stack.
 	 * @param i the operator to be push in.
 	 */
-	public void push(Symbol i) {
+	public final void push(final Symbol i) {
 		Entry ety = new Entry(i);
 		
 		opStack.push(ety);
@@ -45,13 +45,17 @@ public class OpStack {
 
 	/**
 	 * A method to get and remove the top operator from a stack.
-	 * <p>If the type does not match, it will also catch {@link BadTypeException}.</p>
+	 * <p>If the type does not match, it will also catch 
+	 * {@link BadTypeException}.</p>
 	 * @return the top operator in the stack
 	 * @throws EmptyStackException when the stack is empty.
 	 */
-	public Symbol pop() throws EmptyStackException {
+	public final Symbol pop() throws EmptyStackException {
 		Entry ety;
 		
+		if (this.isEmpty()) {
+			throw new EmptyStackException("Empty Stack in OpStack!");
+		}
 		ety = opStack.pop();
 		try {
 			return ety.getSymbol();
@@ -63,13 +67,17 @@ public class OpStack {
 
 	/**
 	 * A method to get but not remove the top operator from a stack.
-	 * <p>If the type does not match, it will also catch {@link BadTypeException}.</p>
+	 * <p>If the type does not match, it will also catch 
+	 * {@link BadTypeException}.</p>
 	 * @return the top operator in the stack
 	 * @throws EmptyStackException when the stack is empty.
 	 */
-	public Symbol top() throws EmptyStackException {
+	public final Symbol top() throws EmptyStackException {
 		Entry ety;
 		
+		if (this.isEmpty()) {
+			throw new EmptyStackException("Empty Stack in OpStack!");
+		}
 		ety = opStack.top();
 		try {
 			return ety.getSymbol();

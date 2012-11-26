@@ -17,5 +17,5 @@ public abstract interface Calculator {
 	 * @throws InvalidExpressionException when the expression is empty or <br>
 	 * unbalanced, or there are unknown operators in it.
 	 */
-	public abstract float evaluate(String what) throws InvalidExpressionException; 
+	float evaluate(String what) throws InvalidExpressionException; 
 }

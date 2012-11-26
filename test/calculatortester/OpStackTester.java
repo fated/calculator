@@ -4,14 +4,13 @@
 package calculatortester;
 
 import static org.junit.Assert.*;
-import java.util.EmptyStackException;
 import calculator.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * A unit tester for OpStack
+ * A unit tester for OpStack.
  * @author Bruce
  *
  */
@@ -33,11 +32,12 @@ public class OpStackTester {
 	 */
 	@Test
 	public void testPushThenPop() {
-		s.push(Symbol.PLUS);
-		assertEquals("Test 1 : test push() then pop()", Symbol.PLUS, s.pop());
-
 		boolean thrown = false;
+
+		s.push(Symbol.PLUS);
 		try {
+			assertEquals("Test 1 : test push() then pop()", 
+					Symbol.PLUS, s.pop());
 			s.pop();
 		} catch (EmptyStackException e) {
 			thrown = true;
@@ -51,12 +51,13 @@ public class OpStackTester {
 	 */
 	@Test
 	public void testPushThenTop() {
-		s.push(Symbol.PLUS);
-		assertEquals("Test 3 : test push() then top()", Symbol.PLUS, s.top());
-
-		s.pop();
 		boolean thrown = false;
+		
+		s.push(Symbol.PLUS);
 		try {
+			assertEquals("Test 3 : test push() then top()", 
+					Symbol.PLUS, s.top());
+			s.pop();
 			s.top();
 		} catch (EmptyStackException e) {
 			thrown = true;
@@ -69,9 +70,11 @@ public class OpStackTester {
 	 */
 	@Test
 	public void testIsEmpty() {
-		assertEquals("Test 5 : test isEmpty() for empty stack", true, s.isEmpty());
+		assertEquals("Test 5 : test isEmpty() for empty stack", 
+				true, s.isEmpty());
 		s.push(Symbol.PLUS);
-		assertEquals("Test 6 : test isEmpty() for not empty stack", false, s.isEmpty());
+		assertEquals("Test 6 : test isEmpty() for not empty stack", 
+				false, s.isEmpty());
 	}
 	
 }

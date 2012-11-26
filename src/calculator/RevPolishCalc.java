@@ -1,5 +1,5 @@
 package calculator;
-import java.util.EmptyStackException;
+
 import java.util.Scanner;
 
 /**
@@ -8,15 +8,16 @@ import java.util.Scanner;
 
 /**
  * A class for reverse polish notation.
- * <p>This class uses method {@link #evaluate(String)} to calculate the value of a postfix<br>
- * expression in reverse polish notation, it throws {@link InvalidExpressionException}<br>
- * when the expression is empty or unbalanced, or there are unknown operators <br>
+ * <p>This class uses method {@link #evaluate(String)} to calculate the value 
+ * of a postfix<br> expression in reverse polish notation, it throws 
+ * {@link InvalidExpressionException}<br> when the expression is empty or 
+ * unbalanced, or there are unknown operators <br>
  * in it.</p>
  * @author Bruce
  * @see <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation"
  * > Reverse Polish notation from Wikipedia</a>
  */
-public class RevPolishCalc implements Calculator{
+public class RevPolishCalc implements Calculator {
 
 	private NumStack values;
 
@@ -29,15 +30,17 @@ public class RevPolishCalc implements Calculator{
 	
 	/**
 	 * {@inheritDoc}
-	 * <p>This overriding method is to implement the evaluation using reverse<br>
-	 * polish notation. This method reads in entries from the expression and<br>
-	 * push numbers into stack. If it reads in an operator, it pops two numbers<br>
-	 * from the stack and calculate the value and push it back into the stack.<br>
+	 * <p>This overriding method is to implement the evaluation using 
+	 * reverse<br> polish notation. This method reads in entries from the 
+	 * expression and<br> push numbers into stack. If it reads in an operator, 
+	 * it pops two numbers<br> from the stack and calculate the value and push 
+	 * it back into the stack.<br>
 	 * At last it returns a total value.</p>
 	 * @see Calculator#evaluate(java.lang.String)
 	 */
 	@Override
-	public float evaluate(String what) throws InvalidExpressionException {
+	public final float evaluate(final String what) 
+			throws InvalidExpressionException {
 		if ((what == null) || (what.equals(""))) {
 			throw new InvalidExpressionException("Empty Expression!");
 		}
@@ -70,8 +73,9 @@ public class RevPolishCalc implements Calculator{
 			}
 			s.close();
 			arg = values.pop();
-			if (!values.isEmpty())
+			if (!values.isEmpty()) {
 				throw new InvalidExpressionException("Unbalanced Expression!");
+			}
 		} catch (EmptyStackException e) {
 			throw new InvalidExpressionException("Invalid Expression!");
 		}

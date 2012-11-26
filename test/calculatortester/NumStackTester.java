@@ -4,14 +4,13 @@
 package calculatortester;
 
 import static org.junit.Assert.*;
-import java.util.EmptyStackException;
 import calculator.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * A unit tester for NumStack
+ * A unit tester for NumStack.
  * @author Bruce
  *
  */
@@ -33,11 +32,12 @@ public class NumStackTester {
 	 */
 	@Test
 	public void testPushThenPop() {
-		s.push(5.0f);
-		assertEquals("Test 1 : test push() then pop()", 5.0f, s.pop(), 0.00001);
-
 		boolean thrown = false;
+
+		s.push(5.0f);
 		try {
+			assertEquals("Test 1 : test push() then pop()", 
+					5.0f, s.pop(), 0.00001);
 			s.pop();
 		} catch (EmptyStackException e) {
 			thrown = true;
@@ -50,9 +50,11 @@ public class NumStackTester {
 	 */
 	@Test
 	public void testIsEmpty() {
-		assertEquals("Test 3 : test isEmpty() for empty stack", true, s.isEmpty());
+		assertEquals("Test 3 : test isEmpty() for empty stack", 
+				true, s.isEmpty());
 		s.push(5.0f);
-		assertEquals("Test 4 : test isEmpty() for not empty stack", false, s.isEmpty());
+		assertEquals("Test 4 : test isEmpty() for not empty stack", 
+				false, s.isEmpty());
 	}
 
 }

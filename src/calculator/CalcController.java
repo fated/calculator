@@ -9,20 +9,20 @@ import java.awt.event.ActionListener;
 /**
  * A controller of Calculator in MVC framework.
  * @author Bruce
- * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
- * > Model每view每controller from Wikipedia</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93contro
+ * ller"> Model每view每controller from Wikipedia</a>
  */
-public class CalcController {
+public final class CalcController {
 
 	private static CalcView view;
 	private static CalcModel model;
 	private static boolean isInfix = true;
 	
 	/**
-	 * A constructor of class CalcController, initializes all the fields and add<br>
-	 * action listeners to the view.
+	 * A constructor of class CalcController, initializes all fields and<br> 
+	 * add action listeners to the view.
 	 */
-	public CalcController() {
+	private CalcController() {
 		view = new CalcView();		//initialize
 		model = new CalcModel();
 		view.addButtonListener(new ButtonListener());	//add listeners
@@ -45,10 +45,11 @@ public class CalcController {
 		/**
 		 * Invoked when an button is pressed.
 		 * @param e action event.
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 * @see java.awt.event.ActionListener#actionPerformed
+		 * (java.awt.event.ActionEvent)
 		 */
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			String expr = view.getExpression();
 			String result = "";
 			
@@ -63,7 +64,8 @@ public class CalcController {
 	}
 	
 	/**
-	 * A private radio button listener class implements action listener interface.
+	 * A private radio button listener class implements action listener 
+	 * interface.
 	 * @author Bruce
 	 *
 	 */
@@ -72,14 +74,17 @@ public class CalcController {
 		/**
 		 * Invoked when one of the radio buttons is selected.
 		 * @param e action event.
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 * @see java.awt.event.ActionListener#actionPerformed
+		 * (java.awt.event.ActionEvent)
 		 */
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("postfix"))
+		public void actionPerformed(final ActionEvent e) {
+			if (e.getActionCommand().equals("postfix")) {
 				isInfix = false;
-			if (e.getActionCommand().equals("infix"))
+			}
+			if (e.getActionCommand().equals("infix")) {
 				isInfix = true;
+			}
 		}
 		
 	}

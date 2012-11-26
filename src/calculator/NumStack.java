@@ -1,5 +1,4 @@
 package calculator;
-import java.util.EmptyStackException;
 
 /**
  * A class for number stack.
@@ -23,9 +22,10 @@ public class NumStack {
 	 * A method to see if the stack is empty or not.
 	 * @return true if the size of stack is 0, otherwise false.
 	 */
-	public boolean isEmpty() {
-		if (numStack.size() == 0)
+	public final boolean isEmpty() {
+		if (numStack.size() == 0) {
 			return true;
+		}
 		return false;
 	}
 
@@ -33,7 +33,7 @@ public class NumStack {
 	 * A method to push a number into the stack.
 	 * @param i the number to be push in.
 	 */
-	public void push(float i) {
+	public final void push(final float i) {
 		Entry ety = new Entry(i);
 		
 		numStack.push(ety);
@@ -41,19 +41,25 @@ public class NumStack {
 
 	/**
 	 * A method to get and remove the top number from a stack.
-	 * <p>If the type does not match, it will also catch {@link BadTypeException}.</p>
+	 * <p>If the type does not match, it will also catch 
+	 * {@link BadTypeException}.</p>
 	 * @return the top number in the stack
 	 * @throws EmptyStackException when the stack is empty.
 	 */
-	public float pop() throws EmptyStackException {
+	public final float pop() throws EmptyStackException {
 		Entry ety;
 		
+		if (this.isEmpty()) {
+			throw new EmptyStackException("Empty Stack in NumStack!");
+		}
 		ety = numStack.pop();
+
 		try {
 			return ety.getValue();
 		} catch (BadTypeException e) {
 			System.err.println("BadTypeException in NumStack::pop()");
 		}
+		
 		return 0;
 	}
 

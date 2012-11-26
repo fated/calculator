@@ -4,7 +4,6 @@
 package calculatortester;
 
 import static org.junit.Assert.*;
-import java.util.EmptyStackException;
 import calculator.*;
 
 import org.junit.Before;
@@ -33,24 +32,27 @@ public class StrStackTester {
 	 */
 	@Test
 	public void testPushThenPop() {
-		s.push("5 + 4");
-		assertEquals("Test 1 : test push() then pop()", "5 + 4", s.pop());
-
 		boolean thrown = false;
+
+		s.push("5 + 4");
 		try {
+			assertEquals("Test 1 : test push() then pop()", "5 + 4", s.pop());
 			s.pop();
 		} catch (EmptyStackException e) {
 			thrown = true;
 		}
-		assertTrue("Test 2 : test EmptyStackException in pop()", thrown);	}
+		assertTrue("Test 2 : test EmptyStackException in pop()", thrown);
+	}
 
 	/**
 	 * Test method for {@link calculator.StrStack#isEmpty()}.
 	 */
 	@Test
 	public void testIsEmpty() {
-		assertEquals("Test 3 : test isEmpty() for empty stack", true, s.isEmpty());
+		assertEquals("Test 3 : test isEmpty() for empty stack", 
+				true, s.isEmpty());
 		s.push("5 + 4");
-		assertEquals("Test 4 : test isEmpty() for not empty stack", false, s.isEmpty());
+		assertEquals("Test 4 : test isEmpty() for not empty stack", 
+				false, s.isEmpty());
 	}
 }

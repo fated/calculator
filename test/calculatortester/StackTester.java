@@ -4,14 +4,13 @@
 package calculatortester;
 
 import static org.junit.Assert.*;
-import java.util.EmptyStackException;
 import calculator.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * A unit tester for Stack
+ * A unit tester for Stack.
  * @author Bruce
  *
  */
@@ -34,12 +33,12 @@ public class StackTester {
 	 */
 	@Test
 	public void testPushThenPop() {
-		s.push(ety);
-		assertEquals("Test 1 : push() then pop()", ety, s.pop());
-		
 		boolean thrown = false;
-		//test functionality of throw exception.
+
+		s.push(ety);
 		try {
+			assertEquals("Test 1 : push() then pop()", ety, s.pop());
+			//test functionality of throw exception.
 			s.pop();		//should throw exception here.
 		} catch (EmptyStackException e) {
 			thrown = true;	//if catch exception then change flag.
@@ -54,12 +53,12 @@ public class StackTester {
 	 */
 	@Test
 	public void testPushThenTop() {
-		s.push(ety);
-		assertEquals("Test 3 : push() then top()", ety, s.top());
-
 		boolean thrown = false;
-		//test functionality of throw exception.
+
+		s.push(ety);
 		try {
+			assertEquals("Test 3 : push() then top()", ety, s.top());
+			//test functionality of throw exception.
 			s.pop();
 			s.top();		//should throw exception here.
 		} catch (EmptyStackException e) {
