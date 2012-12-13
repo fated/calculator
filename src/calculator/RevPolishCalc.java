@@ -24,9 +24,7 @@ public class RevPolishCalc implements Calculator {
 	/**
 	 * A constructor of class RevPolishCalc, initialize the fields.
 	 */
-	public RevPolishCalc() {
-		values = new NumStack();
-	}
+	public RevPolishCalc() { }
 	
 	/**
 	 * {@inheritDoc}
@@ -41,10 +39,8 @@ public class RevPolishCalc implements Calculator {
 	@Override
 	public final float evaluate(final String what) 
 			throws InvalidExpressionException {
-		if ((what == null) || (what.equals(""))) {
-			throw new InvalidExpressionException("Empty Expression!");
-		}
-		
+		values = new NumStack();
+
 		Scanner s = new Scanner(what);
 		float arg = 0.0F;
 		

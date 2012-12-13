@@ -42,6 +42,10 @@ public class CalcModel {
 	 */
 	public final float evaluate(final String expr, final boolean infix) 
 			throws InvalidExpressionException {
+		if ((expr == null) || (expr.equals(""))) {
+			throw new InvalidExpressionException("Empty Expression!");
+		}
+
 		if (infix) {
 			return standard.evaluate(expr);
 		}

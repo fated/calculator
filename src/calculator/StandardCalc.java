@@ -28,7 +28,6 @@ public class StandardCalc implements Calculator {
 	 * A constructor of class StandardCalc, initialize the fields.
 	 */
 	public StandardCalc() {
-		opStack = new OpStack();
 		rpCalc = new RevPolishCalc();
 	}
 	
@@ -44,6 +43,8 @@ public class StandardCalc implements Calculator {
 	@Override
 	public final float evaluate(final String what) 
 			throws InvalidExpressionException {
+		opStack = new OpStack();
+
 		Scanner s = new Scanner(what);
 		String rpStr = "";
 		boolean expectNumber = true;
