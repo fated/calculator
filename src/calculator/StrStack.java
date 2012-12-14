@@ -13,6 +13,9 @@ package calculator;
  */
 public class StrStack {
 
+	/**
+	 * String stack.
+	 */
 	private Stack strStack;
 
 	/**
@@ -61,6 +64,28 @@ public class StrStack {
 			return ety.getString();
 		} catch (BadTypeException e) {
 			System.err.println("BadTypeException in NumStack::pop()");
+		}
+		return "";
+	}
+	
+	/**
+	 * A method to get but not remove the top operator from a stack.
+	 * <p>If the type does not match, it will also catch 
+	 * {@link BadTypeException}.</p>
+	 * @return the top string in the stack
+	 * @throws EmptyStackException when the stack is empty.
+	 */
+	public final String top() throws EmptyStackException {
+		Entry ety;
+		
+		if (this.isEmpty()) {
+			throw new EmptyStackException("Empty Stack in OpStack!");
+		}
+		ety = strStack.top();
+		try {
+			return ety.getString();
+		} catch (BadTypeException e) {
+			System.err.println("BadTypeException in OpStack::top()");
 		}
 		return "";
 	}

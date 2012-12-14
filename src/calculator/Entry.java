@@ -13,9 +13,21 @@ package calculator;
  */
 public class Entry {
 
+	/**
+	 * Number field.
+	 */
 	private float number = 0.0F;
-	private Symbol other = null;
+	/**
+	 * Symbol field.
+	 */
+	private Symbol other = Symbol.INVALID;
+	/**
+	 * String field.
+	 */
 	private String str = null;
+	/**
+	 * The type of this entry.
+	 */
 	private Type type;
 	
 	/**

@@ -10,9 +10,15 @@ package calculator;
  */
 public class InvalidExpressionException extends Exception {
 
+	/**
+	 * Auto generated.
+	 */
 	private static final long serialVersionUID = 1L;
 
-	public InvalidExpressionException(String message) {
+	/**
+	 * @param message error message.
+	 */
+	public InvalidExpressionException(final String message) {
     	super(message);
     }
 }

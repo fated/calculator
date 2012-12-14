@@ -9,6 +9,9 @@ package calculator;
  */
 public class NumStack {
 
+	/**
+	 * Stack for storing numbers.
+	 */
 	private Stack numStack;
 
 	/**

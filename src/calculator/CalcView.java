@@ -23,18 +23,37 @@ import javax.swing.JTextField;
  * A controller of Calculator in MVC framework.
  * @author Bruce
  * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93contro
- * ller"> Model¨Cview¨Ccontroller from Wikipedia</a>
+ * ller"> Modelâ€“viewâ€“controller from Wikipedia</a>
  */
 public class CalcView extends JFrame {
 
+	/**
+	 * Auto generated.
+	 */
 	private static final long serialVersionUID = 1L;
-	private String expression;
-	private String answer;
+	/**
+	 * Input Text Field.
+	 */
 	private JTextField inputTF;
+    /**
+     * Result Text Field.
+     */
     private JTextField resultTF;
+    /**
+     * Calculate Button.
+     */
     private JButton	calcButton;
+    /**
+     * Reverse Polish Radio Button.
+     */
     private JRadioButton revButton;
+    /**
+     * Infix Radio Button.
+     */
     private JRadioButton infixButton;
+    /**
+     * ButtonGroup of the pair of radio buttons.
+     */
     private ButtonGroup bg;
     
 	/**
@@ -63,7 +82,7 @@ public class CalcView extends JFrame {
 		JPanel content = new JPanel();
 		content.setSize(300, 200);
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-		content.add(Box.createRigidArea(new Dimension(100,5)));
+		content.add(Box.createRigidArea(new Dimension(100, 5)));
 
 		//add calcButton
         calcButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -107,8 +126,7 @@ public class CalcView extends JFrame {
 	 * @return the string form of the expression.
 	 */
 	public final String getExpression() {
-		expression = inputTF.getText();
-		return expression;
+		return inputTF.getText();
 	}
 	
 	/**
@@ -116,8 +134,7 @@ public class CalcView extends JFrame {
 	 * @param str the string form of the calculated value.
 	 */
 	public final void setAnswer(final String str) {
-		answer = str;
-		resultTF.setText(answer);
+		resultTF.setText(str);
 		resultTF.setBackground(Color.GRAY);		//change color
 		resultTF.setForeground(Color.BLACK);
 	}

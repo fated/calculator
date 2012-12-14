@@ -16,18 +16,17 @@ import org.junit.Test;
  */
 public class StandardCalcTester {
 	
+	/**
+	 * An object of StandardCalc.
+	 */
 	private StandardCalc sc;
-	private String str1;
-	private String str2;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		sc = new StandardCalc();
-		str1 = "( 5 * ( 6 + 7 ) ) - 2";
-		str2 = "1 (( + ";
 	}
 
 	/**
@@ -36,7 +35,10 @@ public class StandardCalcTester {
 	 * @throws InvalidExpressionException when expression is invalid.
 	 */
 	@Test
-	public void testEvaluate() throws InvalidExpressionException {
+	public final void testEvaluate() throws InvalidExpressionException {
+		String str1 = "( 5 * ( 6 + 7 ) ) - 2";
+		String str2 = "1 (( + ";
+
 		assertEquals("Test 1 : test evaluate() in StandardCalc", 
 				63.0f, sc.evaluate(str1), 0.000001);
 		

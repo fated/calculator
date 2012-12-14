@@ -10,12 +10,21 @@ import java.awt.event.ActionListener;
  * A controller of Calculator in MVC framework.
  * @author Bruce
  * @see <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93contro
- * ller"> Model¨Cview¨Ccontroller from Wikipedia</a>
+ * ller"> Modelï¿½Cviewï¿½Ccontroller from Wikipedia</a>
  */
 public final class CalcController {
 
+	/**
+	 * View of Calculator in MVC framework.
+	 */
 	private static CalcView view;
+	/**
+	 * Model of Calculator in MVC framework.
+	 */
 	private static CalcModel model;
+	/**
+	 * Infix state.
+	 */
 	private static boolean isInfix = true;
 	
 	/**
@@ -30,7 +39,11 @@ public final class CalcController {
 		view.setVisible(true);		//display
 	}
 
-	public static void main(String[] args) {
+	/**
+	 * Launch the problem.
+	 * @param args command arguments.
+	 */
+	public static void main(final String[] args) {
 		@SuppressWarnings("unused")
 		CalcController controller = new CalcController();
 	}

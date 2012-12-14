@@ -10,9 +10,15 @@ package calculator;
  */
 public class BadTypeException extends Exception {
 	
+	/**
+	 * Auto generated.
+	 */
 	private static final long serialVersionUID = 1L;
 
-	public BadTypeException(String message) {
+	/**
+	 * @param message error message
+	 */
+	public BadTypeException(final String message) {
     	super(message);
     }
 }

@@ -15,14 +15,21 @@ import org.junit.Test;
  *
  */
 public class StackTester {
+	
+	/**
+	 * An object of Stack.
+	 */
 	private Stack s;
+	/**
+	 * A test entry.
+	 */
 	private Entry ety;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		s = new Stack();
 		ety = new Entry(12.34f);
 	}
@@ -32,7 +39,7 @@ public class StackTester {
 	 * and {@link calculator.Stack#pop()}.
 	 */
 	@Test
-	public void testPushThenPop() {
+	public final void testPushThenPop() {
 		boolean thrown = false;
 
 		s.push(ety);
@@ -52,7 +59,7 @@ public class StackTester {
 	 * and {@link calculator.Stack#top()}.
 	 */
 	@Test
-	public void testPushThenTop() {
+	public final void testPushThenTop() {
 		boolean thrown = false;
 
 		s.push(ety);

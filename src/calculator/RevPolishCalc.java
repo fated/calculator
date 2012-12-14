@@ -14,17 +14,15 @@ import java.util.Scanner;
  * unbalanced, or there are unknown operators <br>
  * in it.</p>
  * @author Bruce
- * @see <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation"
- * > Reverse Polish notation from Wikipedia</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation">
+ * Reverse Polish notation from Wikipedia</a>
  */
 public class RevPolishCalc implements Calculator {
 
-	private NumStack values;
-
 	/**
-	 * A constructor of class RevPolishCalc, initialize the fields.
+	 * Number stack.
 	 */
-	public RevPolishCalc() { }
+	private NumStack values;
 	
 	/**
 	 * {@inheritDoc}
@@ -70,7 +68,7 @@ public class RevPolishCalc implements Calculator {
 			s.close();
 			arg = values.pop();
 			if (!values.isEmpty()) {
-				throw new InvalidExpressionException("Unbalanced Expression!");
+				throw new InvalidExpressionException("Lack of Operator!");
 			}
 		} catch (EmptyStackException e) {
 			throw new InvalidExpressionException("Invalid Expression!");

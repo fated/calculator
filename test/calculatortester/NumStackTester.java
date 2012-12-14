@@ -16,13 +16,16 @@ import org.junit.Test;
  */
 public class NumStackTester {
 
+	/**
+	 * An object of NumStack.
+	 */
 	private NumStack s;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		s = new NumStack();
 	}
 
@@ -31,7 +34,7 @@ public class NumStackTester {
 	 * and {@link calculator.NumStack#pop()}.
 	 */
 	@Test
-	public void testPushThenPop() {
+	public final void testPushThenPop() {
 		boolean thrown = false;
 
 		s.push(5.0f);
@@ -49,7 +52,7 @@ public class NumStackTester {
 	 * Test method for {@link calculator.NumStack#isEmpty()}.
 	 */
 	@Test
-	public void testIsEmpty() {
+	public final void testIsEmpty() {
 		assertEquals("Test 3 : test isEmpty() for empty stack", 
 				true, s.isEmpty());
 		s.push(5.0f);

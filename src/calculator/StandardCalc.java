@@ -16,12 +16,18 @@ import java.util.Scanner;
  * postfix expression (Reverse Polish Notation)<br> then call 
  * {@link RevPolishCalc#evaluate(String)} to calculate it.</p>
  * @author Bruce
- * @see <a href="http://en.wikipedia.org/wiki/Shunting-yard_algorithm"
- * > Shunting-yard algorithm from Wikipedia</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Shunting-yard_algorithm">
+ * Shunting-yard algorithm from Wikipedia</a>
  */
 public class StandardCalc implements Calculator {
 
-	private OpStack opStack;
+	/**
+	 * String stack.
+	 */
+	private StrStack strStack;
+	/**
+	 * A reverse polish calculator.
+	 */
 	private RevPolishCalc rpCalc;
 
 	/**
@@ -43,107 +49,66 @@ public class StandardCalc implements Calculator {
 	@Override
 	public final float evaluate(final String what) 
 			throws InvalidExpressionException {
-		opStack = new OpStack();
+		strStack = new StrStack();
 
 		Scanner s = new Scanner(what);
 		String rpStr = "";
 		boolean expectNumber = true;
 
-		while (s.hasNext()) {
-			String str = s.next();
-			if (isOperator(str)) {
-				if (expectNumber) {
-					s.close();
-					throw new InvalidExpressionException(
-							"Invalid Expression!");
-				} else {
-					expectNumber = true;
-				}
-				try {
-					while (!opStack.isEmpty() && getPrecedence(str) 
-							<= getPrecedence(symbolToString(opStack.top()))) {
-						rpStr = rpStr + symbolToString(opStack.pop()) + " ";
+		try {
+			while (s.hasNext()) {
+				String str = s.next();
+				if (isOperator(str)) {
+					if (expectNumber) {
+						s.close();
+						throw new InvalidExpressionException(
+								"Invalid Expression!");
+					} else {
+						expectNumber = true;
 					}
-				} catch (EmptyStackException e) {
-					e.printStackTrace();
-				}
-				opStack.push(stringToSymbol(str));
-			} else if (str.equals("(")) {
-				opStack.push(Symbol.LEFT_BRACKET);
-			} else if (str.equals(")")) {
-				try {
-					while (opStack.top() != Symbol.LEFT_BRACKET) {
-						rpStr = rpStr + symbolToString(opStack.pop()) + " ";
+					while (!strStack.isEmpty() 
+							&& getOrder(str) <= getOrder(strStack.top())) {
+						rpStr = rpStr + strStack.pop() + " ";
 					}
-					opStack.pop();
-				} catch (EmptyStackException e) {
-					s.close();
-					throw new InvalidExpressionException(
-							"Unbalanced Parentheses!");
-				}
-			} else {
-				if (!expectNumber) {
-					s.close();
-					throw new InvalidExpressionException(
-							"Invalid Expression!");
+					strStack.push(str);
+				} else if (str.equals("(")) {
+					strStack.push(str);
+				} else if (str.equals(")")) {
+					try {
+						while (!strStack.top().equals("(")) {
+							rpStr = rpStr + strStack.pop() + " ";
+						}
+					} catch (EmptyStackException e) {
+						s.close();
+						throw new InvalidExpressionException(
+								"Unbalanced Parentheses!");
+					}
+					strStack.pop();
 				} else {
-					expectNumber = false;
+					if (!expectNumber) {
+						s.close();
+						throw new InvalidExpressionException(
+								"Invalid Expression!");
+					} else {
+						expectNumber = false;
+					}
+					rpStr = rpStr + str + " ";
 				}
-				rpStr = rpStr + str + " ";
 			}
-		}
-		s.close();
-		
-		while (!opStack.isEmpty()) {
-			try {
-				if (opStack.top() == Symbol.LEFT_BRACKET) {
+			s.close();
+			while (!strStack.isEmpty()) {
+				if (strStack.top().equals("(")) {
 					throw new InvalidExpressionException(
 							"Unbalanced Parentheses!");
 				} else {
-					rpStr = rpStr + symbolToString(opStack.pop()) + " ";
+					rpStr = rpStr + strStack.pop() + " ";
 				}
-			} catch (EmptyStackException e) {
-				e.printStackTrace();
 			}
+		} catch (EmptyStackException e) {
+			throw new InvalidExpressionException("Invalid Expression!");
 		}
-			
+					
 		return rpCalc.evaluate(rpStr);
-	}
-
-	/**
-	 * A method that converts Symbol to string.
-	 * @param ety the Symbol to be converted.
-	 * @return the string <b>ety</b> stands for. 
-	 */
-	private String symbolToString(final Symbol ety) {
-		if (ety == Symbol.PLUS) {
-			return "+";
-		} else if (ety == Symbol.MINUS) {
-			return "-";
-		} else if (ety == Symbol.TIMES) {
-			return "*";
-		} else if (ety == Symbol.DIVIDE) {
-			return "/";
-		}
-		return "";
-	}
-	
-	/**
-	 * A method that converts string to Symbol.
-	 * @param str the string to be converted.
-	 * @return the Symbol <b>str</b> stands for.
-	 */
-	private Symbol stringToSymbol(final String str) {
-		if (str.equals("+")) {
-			return Symbol.PLUS;
-		} else if (str.equals("-")) {
-			return Symbol.MINUS;
-		} else if (str.equals("*")) {
-			return Symbol.TIMES;
-		} else if (str.equals("/")) {
-			return Symbol.DIVIDE;
-		}
-		return Symbol.INVALID;
 	}
 	
 	/**
@@ -151,7 +116,7 @@ public class StandardCalc implements Calculator {
 	 * @param str the string form of an operator.
 	 * @return the precedence of this operator.
 	 */
-	private int getPrecedence(final String str) {
+	private int getOrder(final String str) {
 		if (str.equals("+") || str.equals("-")) {
 			return 1;
 		} else if (str.equals("*") || str.equals("/")) {

@@ -16,13 +16,16 @@ import org.junit.Test;
  */
 public class StrStackTester {
 
+	/**
+	 * An object of StrStack.
+	 */
 	private StrStack s;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		s = new StrStack();
 	}
 
@@ -31,7 +34,7 @@ public class StrStackTester {
 	 * and {@link calculator.StrStack#pop()}.
 	 */
 	@Test
-	public void testPushThenPop() {
+	public final void testPushThenPop() {
 		boolean thrown = false;
 
 		s.push("5 + 4");
@@ -48,7 +51,7 @@ public class StrStackTester {
 	 * Test method for {@link calculator.StrStack#isEmpty()}.
 	 */
 	@Test
-	public void testIsEmpty() {
+	public final void testIsEmpty() {
 		assertEquals("Test 3 : test isEmpty() for empty stack", 
 				true, s.isEmpty());
 		s.push("5 + 4");

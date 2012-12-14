@@ -9,8 +9,20 @@ package calculator;
  *
  */
 public enum Type {
+	/**
+	 * Type NUMBER.
+	 */
 	NUMBER,
+	/**
+	 * Type Symbol.
+	 */
 	SYMBOL,
+	/**
+	 * Type String.
+	 */
 	STRING,
+	/**
+	 * INVALID Type.
+	 */
 	INVALID
 }

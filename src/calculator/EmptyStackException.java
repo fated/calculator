@@ -10,9 +10,15 @@ package calculator;
  */
 public class EmptyStackException extends Exception {
 	
+	/**
+	 * Auto generated.
+	 */
 	private static final long serialVersionUID = 1L;
 
-	public EmptyStackException(String message) {
+	/**
+	 * @param message error message.
+	 */
+	public EmptyStackException(final String message) {
     	super(message);
     }
 }

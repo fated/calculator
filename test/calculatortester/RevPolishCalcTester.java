@@ -16,18 +16,17 @@ import org.junit.Test;
  */
 public class RevPolishCalcTester {
 	
+	/**
+	 * An object of RevPolishCalc.
+	 */
 	private RevPolishCalc rpc;
-	private String str1;
-	private String str2;
 	
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		rpc = new RevPolishCalc();
-		str1 = "5 6 7 + * 2 -";
-		str2 = "1 a d f a ";
 	}
 
 	/**
@@ -36,7 +35,10 @@ public class RevPolishCalcTester {
 	 * @throws InvalidExpressionException when expression is invalid.
 	 */
 	@Test
-	public void testEvaluate() throws InvalidExpressionException {
+	public final void testEvaluate() throws InvalidExpressionException {
+		String str1 = "5 6 7 + * 2 -";
+		String str2 = "1 a d f a ";
+		
 		assertEquals("Test 1 : test evaluate() in RevPolishCalc", 
 				63.0f, rpc.evaluate(str1), 0.000001);
 		

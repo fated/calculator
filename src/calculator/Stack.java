@@ -16,7 +16,13 @@ import java.util.List;
  */
 public class Stack {
 
+	/**
+	 * The size of the stack.
+	 */
 	private int size;
+	/**
+	 * The stack.
+	 */
 	private List<Entry> entries;
 	
 	/**
@@ -69,8 +75,7 @@ public class Stack {
 	public final Entry top() throws EmptyStackException {
 		if (this.size > 0) {
 			return this.entries.get(this.size - 1);
-		}
-		else {
+		} else {
 			//refactor: throw exception
 			throw new EmptyStackException("Empty Stack in Stack");
 		}

@@ -16,13 +16,16 @@ import org.junit.Test;
  */
 public class OpStackTester {
 
+	/**
+	 * An object of OpStack.
+	 */
 	private OpStack s;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		s = new OpStack();
 	}
 
@@ -31,7 +34,7 @@ public class OpStackTester {
 	 * and {@link calculator.OpStack#pop()}.
 	 */
 	@Test
-	public void testPushThenPop() {
+	public final void testPushThenPop() {
 		boolean thrown = false;
 
 		s.push(Symbol.PLUS);
@@ -50,7 +53,7 @@ public class OpStackTester {
 	 * and {@link calculator.OpStack#top()}.
 	 */
 	@Test
-	public void testPushThenTop() {
+	public final void testPushThenTop() {
 		boolean thrown = false;
 		
 		s.push(Symbol.PLUS);
@@ -69,7 +72,7 @@ public class OpStackTester {
 	 * Test method for {@link calculator.OpStack#isEmpty()}.
 	 */
 	@Test
-	public void testIsEmpty() {
+	public final void testIsEmpty() {
 		assertEquals("Test 5 : test isEmpty() for empty stack", 
 				true, s.isEmpty());
 		s.push(Symbol.PLUS);

@@ -16,13 +16,16 @@ import org.junit.Test;
  */
 public class EntryTester {
 
+	/**
+	 * Test entries.
+	 */
 	private Entry ety1, ety2, ety3;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		ety1 = new Entry(12.34f);
 		ety2 = new Entry(Symbol.DIVIDE);
 		ety3 = new Entry("3 + 4");
@@ -32,7 +35,7 @@ public class EntryTester {
 	 * Test method for {@link calculator.Entry#getType()}.
 	 */
 	@Test
-	public void testGetType() {
+	public final void testGetType() {
 		assertEquals("Test 1 : test getType()", Type.NUMBER, ety1.getType());
 	}
 
@@ -41,7 +44,7 @@ public class EntryTester {
 	 * @throws BadTypeException when type does not match.
 	 */
 	@Test
-	public void testGetSymbol() throws BadTypeException {
+	public final void testGetSymbol() throws BadTypeException {
 		assertEquals("Test 2 : test getSymbol()", 
 				Symbol.DIVIDE, ety2.getSymbol());
 		
@@ -61,7 +64,7 @@ public class EntryTester {
 	 * @throws BadTypeException when type does not match.
 	 */
 	@Test
-	public void testGetValue() throws BadTypeException {
+	public final void testGetValue() throws BadTypeException {
 		assertEquals("Test 4 : test getValue()", 
 				12.34f, ety1.getValue(), 0.000001);
 		
@@ -81,7 +84,7 @@ public class EntryTester {
 	 * @throws BadTypeException when type does not match.
 	 */
 	@Test
-	public void testGetString() throws BadTypeException {
+	public final void testGetString() throws BadTypeException {
 		assertEquals("Test 6 : test getString()", "3 + 4", ety3.getString());
 		
 		boolean thrown = false;

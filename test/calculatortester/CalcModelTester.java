@@ -16,18 +16,17 @@ import org.junit.Test;
  */
 public class CalcModelTester {
 
+	/**
+	 * An object of CalcModel.
+	 */
 	private CalcModel calc;
-	private String str1, str2, str3;
 
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an exception.
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public final void setUp() throws Exception {
 		calc = new CalcModel();
-		str1 = "5 6 7 + * 2 -";
-		str2 = "( 5 * ( 6 + 7 ) ) - 2";
-		str3 = "5 6 7 + * 2 - /";
 	}
 
 	/**
@@ -36,8 +35,11 @@ public class CalcModelTester {
 	 * @throws InvalidExpressionException
 	 */
 	@Test
-	public void testEvaluate() {
+	public final void testEvaluate() {
 		boolean infix, thrown = false;
+		String str1 = "5 6 7 + * 2 -";
+		String str2 = "( 5 * ( 6 + 7 ) ) - 2";
+		String str3 = "5 6 7 + * 2 - /";
 		
 		try {
 			infix = false;

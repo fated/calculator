@@ -13,6 +13,9 @@ package calculator;
  */
 public class OpStack {
 
+	/**
+	 * Stack for storing operators.
+	 */
 	private Stack opStack;
 
 	/**
@@ -64,12 +67,12 @@ public class OpStack {
 		}
 		return Symbol.INVALID;
 	}
-
+	
 	/**
 	 * A method to get but not remove the top operator from a stack.
 	 * <p>If the type does not match, it will also catch 
 	 * {@link BadTypeException}.</p>
-	 * @return the top operator in the stack
+	 * @return the top string in the stack
 	 * @throws EmptyStackException when the stack is empty.
 	 */
 	public final Symbol top() throws EmptyStackException {
@@ -86,5 +89,4 @@ public class OpStack {
 		}
 		return Symbol.INVALID;
 	}
-
 }
